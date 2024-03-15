@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Locator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add custom styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Banking App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Locate Branches <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="transactions.html">Transactions</a>
+                    </li>
+                    <!-- Add more navigation items as needed -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container mt-5">
+        <h2>Branch Locator</h2>
+        <form id="searchForm">
+            <div class="form-group">
+                <label for="locationInput">Enter Location (ZIP code, city, etc.):</label>
+                <input type="text" class="form-control" id="locationInput" placeholder="Enter location">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <div class="mt-4" id="branchList">
+            <!-- Branches will be dynamically displayed here -->
+        </div>
+
+        <div id="map"></div>
+    </section>
+
+    <!-- Bootstrap JS (jQuery dependency) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Google Maps API -->
+    <!-- Replace YOUR_API_KEY with your actual API key -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+
+    <script>
+        // Function to initialize Google Maps
+        function initMap() {
+            // Your code to initialize the map goes here
+        }
+
+        // Function to display nearby branches based on user's input
+        function displayBranches(location) {
+            // Your code to fetch and display nearby branches goes here
+        }
+
+        // Function to generate random branch with pincode and city
+        function getRandomBranch() {
+            const branches = [
+                { name: 'state bank of india', pincode: '12345', city: 'udupi' },
+                { name: 'bank of baroda ', pincode: '54321', city: 'nitte' },
+                // Add more branch data as needed
+            ];
+            const randomIndex = Math.floor(Math.random() * branches.length);
+            return branches[randomIndex];
+        }
+
+        // Event listener for form submission
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const location = document.getElementById('locationInput').value;
+            displayBranches(location);
+
+            // Get random branch details and display
+            const randomBranch = getRandomBranch();
+            document.getElementById('branchList').innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${randomBranch.name}</h5>
+                        <p class="card-text">Pincode: ${randomBranch.pincode}</p>
+                        <p class="card-text">City: ${randomBranch.city}</p>
+                        <a href="transactions.html" class="btn btn-primary">Proceed to Transactions</a>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
